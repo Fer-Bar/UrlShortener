@@ -10,8 +10,8 @@
 
     <title>{% block title %} {% endblock %}</title>
   </head>
-  <body>
-    <div class="container mt-3">
+  <body style="background-color: #112A6c">
+    <div style="font-family: monospace, sans-serif;" class="container mt-3">
         {% for message in get_flashed_messages() %}
             <div class="alert alert-danger">{{ message }}</div>
         {% endfor %}
