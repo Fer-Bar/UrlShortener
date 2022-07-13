@@ -1,8 +1,10 @@
+import string
+import validators
+
 from datetime import datetime
 from core.models import ShortUrl
 from core import app, db
 from random import choice
-import string
 from flask import render_template, request, flash, redirect, url_for
 
 
@@ -23,7 +25,11 @@ def index():
         if short_id and ShortUrl.query.filter_by(short_id=short_id).first() is not None:
             flash('Please enter different custom id!')
             return redirect(url_for('index'))
-
+        
+        if not validators.url(url):
+            flash('Enter a valid url.')
+            return redirect(url_for('index'))
+                
         if not url:
             flash('The URL is required!')
             return redirect(url_for('index'))
